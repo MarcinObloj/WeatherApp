@@ -1,0 +1,48 @@
+<header
+  class="bg-blue-600 dark:bg-gray-800 text-white py-6 shadow-md sticky top-0 z-50"
+>
+  <div class="container mx-auto flex justify-between items-center px-4">
+    <div class="flex items-center space-x-2">
+      <a routerLink="/" class="flex items-center space-x-2">
+        <mat-icon>sunny</mat-icon>
+        <h1 class="text-xl font-bold dark:text-gray-300">WeatherApp</h1>
+      </a>
+    </div>
+
+    <div class="flex items-center justify-center space-x-4 j">
+      @if (isLoggedIn$ | async) {
+      <a routerLink="/profile" class="flex items-center space-x-2">
+        <img
+          [src]="avatarUrl != null ? avatarUrl : 'default-avatar.png'"
+          alt="User Avatar"
+          class="w-10 h-10 rounded-full border border-gray-300"
+        />
+      </a>
+
+      } @else {
+      <a routerLink="/login" class="text-white hover:text-gray-300">Login</a>
+      <a routerLink="/register" class="text-white hover:text-gray-300"
+        >Register</a
+      >
+      }
+      <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+        <mat-icon style="color: white">settings</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <mat-menu #themeMenu="matMenu">
+    <button mat-menu-item (click)="setTheme('light')">
+      <mat-icon>brightness_5</mat-icon>
+      <span>Light</span>
+    </button>
+    <button mat-menu-item (click)="setTheme('dark')">
+      <mat-icon>brightness_4</mat-icon>
+      <span>Dark</span>
+    </button>
+    <button mat-menu-item (click)="setTheme('system')">
+      <mat-icon>settings_suggest</mat-icon>
+      <span>System</span>
+    </button>
+  </mat-menu>
+</header>

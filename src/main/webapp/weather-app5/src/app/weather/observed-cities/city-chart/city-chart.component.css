@@ -1,0 +1,13 @@
+div {
+    height: 300px; 
+    max-width: 1000px; 
+    margin: auto; 
+  }
+  button.mat-icon-button {
+    position: relative;
+  }
+  
+  button.mat-icon-button + div {
+    position: absolute;
+    z-index: 1000;
+  }

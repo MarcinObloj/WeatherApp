@@ -1,0 +1,63 @@
+<div class="container mx-auto py-4">
+  <h2 class="text-2xl font-bold mb-4">Cities</h2>
+  <mat-form-field appearance="fill" class="custom-search-field" color="primary">
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search for a city..."
+    />
+    <button
+      mat-icon-button
+      *ngIf="searchText"
+      matSuffix
+      (click)="searchText = ''"
+      aria-label="Clear"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="mb-4">
+    <a
+      routerLink="/observed-cities"
+      class="text-blue-700 font-bold hover:underline dark:text-white"
+      >Go to Observed Cities</a
+    >
+  </div>
+  <table class="min-w-full bg-white dark:bg-gray-800">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b dark:border-gray-700">
+          <mat-icon inline class="align-middle mr-1">location_on</mat-icon>
+          Name
+        </th>
+        <th class="py-2 px-4 border-b dark:border-gray-700">
+          <mat-icon inline class="align-middle mr-1">flag</mat-icon>
+          Country
+        </th>
+        <th class="py-2 px-4 border-b dark:border-gray-700">
+          <mat-icon inline class="align-middle mr-1">star</mat-icon>
+          Favorite
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(city of cities | cityFilter:searchText; track city.id){
+      <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 text-center">
+        <td class="py-2 px-4 border-b dark:border-gray-700">{{ city.name }}</td>
+        <td class="py-2 px-4 border-b dark:border-gray-700">
+          {{ city.country }}
+        </td>
+        <td class="py-2 px-4 border-b dark:border-gray-700 text-center">
+          <button (click)="toggleFavorite(city)">
+            <mat-icon [ngClass]="city.isFavorite ? 'favorite' : 'not-favorite'">
+              star
+            </mat-icon>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,94 @@
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-500 to-blue-700 dark:from-gray-800 dark:to-gray-900 text-white px-6 text-center"
+>
+  <div
+    class="w-full max-w-xl bg-white dark:bg-gray-700 p-16 rounded-lg shadow-md dark:shadow-lg"
+  >
+    <h2
+      class="text-4xl font-bold text-center text-gray-700 dark:text-gray-300 mb-10"
+    >
+      Register
+    </h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="mb-8">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            id="username"
+            placeholder="Enter your username"
+            formControlName="username"
+            required
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint
+            *ngIf="
+              registerForm.get('username')?.invalid &&
+              registerForm.get('username')?.touched
+            "
+            class="text-red-500"
+            >Enter a valid username</mat-hint
+          >
+        </mat-form-field>
+      </div>
+      <div class="mb-8">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            formControlName="email"
+            required
+          />
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-hint
+            *ngIf="
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+            "
+            class="text-red-500"
+            >Enter a valid email address</mat-hint
+          >
+        </mat-form-field>
+      </div>
+      <div class="mb-8">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            required
+          />
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-hint
+            *ngIf="
+              registerForm.get('password')?.invalid &&
+              registerForm.get('password')?.touched
+            "
+            class="text-red-500"
+            >Enter a valid password</mat-hint
+          >
+        </mat-form-field>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900 text-white font-semibold py-5 rounded-md shadow-md transition duration-200 cursor-pointer"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+  @if(showModal()){
+    <app-modal
+      [title]="modalTitle()"
+      [message]="modalMessage()"
+      (closeModal)="closeModal()"
+    ></app-modal>
+    }
+</div>

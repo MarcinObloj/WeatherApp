@@ -1,0 +1,13 @@
+/* Styl dla przycisku z trzema poziomymi kropkami */
+button.mat-icon-button {
+    position: relative;
+  }
+  
+  /* Styl dla menu kontekstowego */
+  button.mat-icon-button + div {
+    position: absolute;
+    top: 30px;  /* Możesz dostosować, aby menu było na odpowiedniej wysokości */
+    /* left: -10px;   */
+    z-index: 1000;
+  }
+  

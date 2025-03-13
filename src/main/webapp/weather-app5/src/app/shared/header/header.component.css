@@ -1,0 +1,12 @@
+/* filepath: /c:/Users/User/Desktop/htdocs/weather-app5/src/app/header/header/header.component.css */
+.mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .mobile-menu.open {
+    max-height: 500px; /* Ustaw maksymalną wysokość, która będzie wystarczająca dla zawartości menu */
+    opacity: 1;
+  }

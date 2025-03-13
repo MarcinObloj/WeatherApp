@@ -1,0 +1,12 @@
+
+button {
+    cursor: pointer;
+  }
+  
+  .favorite {
+    color: #f59e0b; /* Tailwind yellow-500 */
+  }
+  
+  .not-favorite {
+    color: #9ca3af; /* Tailwind gray-400 */
+  }

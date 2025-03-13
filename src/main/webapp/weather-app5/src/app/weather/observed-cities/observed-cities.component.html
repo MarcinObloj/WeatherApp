@@ -1,0 +1,91 @@
+
+<div class="container mx-auto py-4">
+  <h2 class="text-2xl font-bold mb-4">Observed Cities</h2>
+
+  @if(forecasts().length > 0){
+  <table class="min-w-full bg-white dark:bg-gray-800">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b dark:border-gray-700">City</th>
+       
+        <th class="py-2 px-4 border-b dark:border-gray-700">
+          <mat-icon inline class="align-middle mr-1">thermostat</mat-icon>
+          Temperature
+        </th>
+        
+        <th class="py-2 px-4 border-b dark:border-gray-700">
+          <mat-icon inline class="align-middle mr-1">water_drop</mat-icon>
+          Humidity
+        </th>
+        <th class="py-2 px-4 border-b dark:border-gray-700">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(forecast of forecasts() ; track forecast.city.id){
+      <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 text-center">
+        <td class="py-2 px-4 border-b dark:border-gray-700">
+          {{ forecast.city.name }}
+        </td>
+        <td class="py-2 px-4 border-b dark:border-gray-700">
+          
+          <mat-icon inline class="align-middle mr-1">thermostat</mat-icon>
+          {{ forecast.temperature | number : "1.2-2" }}°C
+        </td>
+        <td class="py-2 px-4 border-b dark:border-gray-700">
+          
+          <mat-icon inline class="align-middle mr-1">water_drop</mat-icon>
+          {{ forecast.humidity }}%
+        </td>
+        <td class="py-2 px-4 border-b dark:border-gray-700 relative">
+          <button
+            (click)="viewChart(forecast.city.id)"
+            class="bg-blue-500 text-white px-2 py-1 rounded cursor-pointer"
+          >
+            View Chart
+          </button>
+          <button
+            (click)="openMenu(forecast.city.id)"
+            class="text-gray-500 cursor-pointer ml-2"
+          >
+            <mat-icon style="color: #2B7FFF; font-size:28px;"
+              class="dark:text-white"
+              >more_horiz</mat-icon
+            >
+          </button>
+          @if(selectedCityId() === forecast.city.id){
+          <div
+            class="absolute bg-white border p-2 rounded shadow-md dark:border-gray-900 dark:bg-gray-700"
+            style="right:5%; top:0;"
+          >
+            <button
+              (click)="addToMainCity(forecast.city.id)"
+              class="text-blue-500 dark:text-white cursor-pointer"
+            >
+              Add to Main City
+            </button>
+          </div>
+          }
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }@else{
+  <p class="text-center">No cities to display</p>
+  }
+  <div class="mt-2 text-right">
+    <a
+      routerLink="/cities"
+      class="text-blue-700 hover:underline dark:text-white"
+    >
+      Back to all Cities
+    </a>
+  </div>
+  @if(showModal()){
+    <app-modal
+      [title]="modalTitle()"
+      [message]="modalMessage()"
+      (closeModal)="closeModal()"
+    ></app-modal>
+  }
+</div>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: white;
+  color: black;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+.dark body {
+  background-color: #2d3748;
+  color: white;
+}
+
+.dark .mat-icon-button .mat-icon[aria-hidden="true"] {
+  color: white !important;
+}
+
+.mat-icon-button .mat-icon[aria-hidden="true"] {
+  color: black;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));

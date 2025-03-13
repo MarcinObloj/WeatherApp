@@ -1,0 +1,84 @@
+<div class="flex flex-col md:flex-row">
+  <app-sidebar class="w-full md:w-1/4 lg:w-1/5"></app-sidebar>
+  <div class="ml-80 flex-1 flex flex-col items-center md:items-start">
+    <div class="w-full md:w-3/4 lg:w-2/3 mt-4 flex items-center justify-center">
+      <p-carousel
+        [value]="forecasts"
+        [numVisible]="3"
+        [numScroll]="3"
+        [circular]="true"
+        [responsiveOptions]="responsiveOptions"
+        class="w-full"
+      >
+        <ng-template let-forecast pTemplate="item">
+          <div
+            class="border border-surface rounded m-2 p-4 cursor-move hover:shadow-lg transition-shadow"
+            draggable="true"
+            (dragstart)="onDragStart($event, forecast)"
+          >
+            <p class="text-center font-medium">{{ forecast.city.name }}</p>
+            <p class="text-center">
+              {{ forecast.temperature | number : "1.0-0" }}&deg;C
+            </p>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+    <div
+      class="w-full md:w-3/4 min-h-[80vh] bg-indigo-900 text-white rounded-xl shadow-2xl p-6 md:p-8 mt-10 flex flex-col items-center justify-center"
+      (dragover)="allowDrop($event)"
+      (drop)="onDrop($event)"
+    >
+      <div class="text-center">
+        <div class="flex items-center justify-center mb-4">
+          <img
+            [src]="
+              mainCity.forecast.mainWeather === 'Snow'
+                ? '01d.png'
+                : mainCity.forecast.mainWeather === 'Clouds'
+                ? '02d.png'
+                : mainCity.forecast.mainWeather === 'Drizzle'
+                ? '03d.png'
+                : mainCity.forecast.mainWeather === 'Atmosphere'
+                ? '04d.png'
+                : mainCity.forecast.mainWeather === 'Clear'
+                ? '09d.png'
+                : mainCity.forecast.mainWeather === 'Rain'
+                ? '10d.png'
+                : mainCity.forecast.mainWeather === 'Thunderstorm'
+                ? '11d.png'
+                : mainCity.forecast.mainWeather === 'Snow'
+                ? '13d.png'
+                : 'default.png'
+            "
+            alt="weather icon"
+            class="w-20 h-20 md:w-32 md:h-32"
+          />
+        </div>
+        <h2 class="text-2xl md:text-4xl font-bold">Today</h2>
+        <p class="text-sm md:text-lg mt-1">
+          {{ mainCity.forecast.timestamp | date : "EEE, d MMM" }}
+        </p>
+        <p class="mt-1 text-sm md:text-lg">
+          {{ mainCity.forecast.mainWeather }}
+        </p>
+        <p class="text-6xl md:text-[8rem] font-bold mt-4">
+          {{ mainCity.forecast.temperature | number : "1.0-0" }}&deg;C
+        </p>
+        <p class="text-lg md:text-2xl font-semibold mt-2">
+          {{ mainCity.city.name }}, {{ mainCity.city.country }}
+        </p>
+        <div class="flex space-x-5 justify-center items-center mt-4">
+          <p class="text-sm md:text-lg">
+            Feels like
+            {{ mainCity.forecast.feelsLikeTemperature | number : "1.0-0" }}&deg;
+          </p>
+          <span class="block">⦿</span>
+          <p class="text-sm md:text-lg">
+            Sunset {{ mainCity.forecast.sunset | date : "HH:mm" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

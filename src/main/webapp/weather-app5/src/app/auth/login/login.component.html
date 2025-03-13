@@ -1,0 +1,72 @@
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-500 to-blue-700 dark:from-gray-800 dark:to-gray-900 text-white px-6 text-center"
+>
+  <div
+    class="w-full max-w-lg bg-white dark:bg-gray-700 p-12 rounded-lg shadow-md dark:shadow-lg"
+  >
+    <h2
+      class="text-3xl font-bold text-center text-gray-700 dark:text-gray-300 mb-8"
+    >
+      Login
+    </h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="mb-6">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Enter your username</mat-label>
+          <input
+            matInput
+            id="username"
+            placeholder="Enter your username"
+            formControlName="username"
+            required
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint
+            *ngIf="
+              loginForm.get('username')?.invalid &&
+              loginForm.get('username')?.touched
+            "
+            class="text-red-500"
+            >Enter a valid username</mat-hint
+          >
+        </mat-form-field>
+      </div>
+      <div class="mb-6">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            required
+          />
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-hint
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+            class="text-red-500"
+            >Enter a valid password</mat-hint
+          >
+        </mat-form-field>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900 text-white font-semibold py-4 rounded-md shadow-md transition duration-200 cursor-pointer"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+  @if(showModal()){
+  <app-modal
+    [title]="modalTitle()"
+    [message]="modalMessage()"
+    (closeModal)="closeModal()"
+  ></app-modal>
+  }
+</div>

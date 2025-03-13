@@ -1,0 +1,11 @@
+/* Domyślne style dla trybu jasnego */
+body {
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Style dla trybu ciemnego */
+body.dark {
+  background-color: #1a202c;
+  color: #e2e8f0;
+}

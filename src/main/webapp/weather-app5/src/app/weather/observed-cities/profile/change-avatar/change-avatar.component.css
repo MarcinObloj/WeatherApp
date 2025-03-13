@@ -1,0 +1,30 @@
+/* Ustawienia rozmiaru karuzeli */
+.carousel-container {
+  width: 100%;
+  height: 300px; /* Ustaw odpowiednią wysokość */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5; /* Możesz dodać tło dla karuzeli */
+  position: relative;
+}
+
+/* Ustawienia dla obrazków w karuzeli */
+.carousel-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Obrazki będą wypełniały dostępne miejsce, zachowując proporcje */
+  border-radius: 50%; /* Jeśli chcesz, aby były okrągłe */
+}
+
+/* Ustawienia dla przycisków karuzeli (strzałki) */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.selected-avatar {
+  border: 2px solid #007bff; /* Blue border for selected avatar */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Optional shadow for better visibility */
+}
